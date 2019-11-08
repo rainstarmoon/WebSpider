@@ -1,4 +1,4 @@
-package com.xiazeyu.processor;
+package com.xiazeyu.spider.processor;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

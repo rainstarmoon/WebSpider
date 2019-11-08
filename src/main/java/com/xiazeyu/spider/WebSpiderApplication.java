@@ -1,6 +1,6 @@
-package com.xiazeyu;
+package com.xiazeyu.spider;
 
-import com.xiazeyu.processor.BasePageProcessor;
+import com.xiazeyu.spider.processor.BasePageProcessor;
 import us.codecraft.webmagic.Spider;
 
 public class WebSpiderApplication {
