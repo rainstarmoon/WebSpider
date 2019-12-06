@@ -4,15 +4,15 @@ server:
 spring:
   application:
     name: web-spider
-  output:
-    ansi:
-      enabled: ALWAYS
+#  output:
+#    ansi:
+#      enabled: ALWAYS
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-wz90vvwo94auohm728o.mysql.rds.aliyuncs.com:3306/test?serverTimezone=UTC&characterEncoding=utf8mb4&useUnicode=true&useSSL=false
-    username: root
-    password: root
+    url: jdbc:mysql://rm-wz90vvwo94auohm728o.mysql.rds.aliyuncs.com:3306/spider?serverTimezone=UTC&characterEncoding=utf-8&useUnicode=true&useSSL=false
+    username: visitor
+    password: imthefirst1!
 
   jpa:
     # 配置DBMS类型
@@ -20,8 +20,13 @@ spring:
     # 配置是否将执行的SQL输出到日志
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
 
 logging:
   level:
     root: info
+
+spider:
+  thread-num: 1
+  url-root: https://www.zhipin.com/
+  url-regex: http[s]?://\w+\.zhipin\..*

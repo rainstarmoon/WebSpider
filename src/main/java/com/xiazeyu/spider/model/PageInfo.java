@@ -1,22 +1,26 @@
 package com.xiazeyu.spider.model;
 
-import lombok.Builder;
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Date;
+
 @Data
+@Entity
 public class PageInfo {
 
-    private Long id;
-
-    private String content;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private byte[] content;
     private Integer createDate;
-
     private Integer createTime;
+    private Date updateTimestamp;
 
-    private Long updateTimeStamp;
-
-    public static PageInfoBuilder builder(){
+    public static PageInfoBuilder builder() {
         return new PageInfoBuilder();
     }
 
@@ -28,22 +32,22 @@ public class PageInfo {
         this.content = builder.content;
         this.createDate = builder.createDate;
         this.createTime = builder.createTime;
-        this.updateTimeStamp = builder.updateTimeStamp;
+        this.updateTimestamp = builder.updateTimestamp;
     }
 
     public static class PageInfoBuilder {
-        private Long id;
-        private String content;
+        private Integer id;
+        private byte[] content;
         private Integer createDate;
         private Integer createTime;
-        private Long updateTimeStamp;
+        private Date updateTimestamp;
 
-        public PageInfoBuilder id(Long id) {
+        public PageInfoBuilder id(Integer id) {
             this.id = id;
             return this;
         }
 
-        public PageInfoBuilder content(String content) {
+        public PageInfoBuilder content(byte[] content) {
             this.content = content;
             return this;
         }
@@ -58,14 +62,14 @@ public class PageInfo {
             return this;
         }
 
-        public PageInfoBuilder updateTimeStamp(Long updateTimeStamp) {
-            this.updateTimeStamp = updateTimeStamp;
+        public PageInfoBuilder updateTimestamp(Date updateTimestamp) {
+            this.updateTimestamp = updateTimestamp;
             return this;
         }
 
         private void initDefaultValue() {
             if (content == null) {
-                content = "";
+                content = new byte[0];
             }
             if (createDate == null) {
                 createDate = com.xiazeyu.spider.util.DateUtil.nowDate();

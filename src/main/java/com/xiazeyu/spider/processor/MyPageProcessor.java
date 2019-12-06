@@ -10,6 +10,12 @@ public class MyPageProcessor implements PageProcessor {
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000).setTimeOut(10000);
 
+    private String regexStr;
+
+    public MyPageProcessor(String regexStr) {
+        this.regexStr = regexStr;
+    }
+
     @Override
     public Site getSite() {
         return site;
@@ -19,10 +25,8 @@ public class MyPageProcessor implements PageProcessor {
     public void process(Page page) {
         Html html = page.getHtml();
         Selectable links = html.links();
-        // todo xiazeyu
-        Selectable regex = links.regex("(https://github\\.com/[\\w\\-]+/[\\w\\-]+)");
-        page.addTargetRequests(regex.all());
-        page.putField("content", page.getHtml());
+        page.addTargetRequests(links.regex(regexStr).all());
+        page.putField("content", html.toString());
     }
 
 }
